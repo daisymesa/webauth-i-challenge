@@ -6,7 +6,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "helmet": "^3.18.0",
-    "server": "^1.0.19"
+    "knex": "^0.17.6",
+    "server": "^1.0.19",
+    "sqlite3": "^4.0.9"
   },
   "devDependencies": {},
   "scripts": {
