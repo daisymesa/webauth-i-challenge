@@ -70,7 +70,18 @@ router.post('/login', (req, res) => {
 //If the user is logged in, respond with an array of all the users contained in the database. 
 //If the user is not logged in respond with the correct status code and the message: 'You shall not pass!'.
 router.get('/users', (req, res) => {
-
+    const credentials = req.body;
+    if (!user || !bcrypt.compareSync(credentials.password, user.password)) {
+        db('users')
+            .then(users => {
+                res.status(200).json(users);
+            })
+            .catch(error => {
+                res.status(500).json({ error: 'You shall not pass!' })
+            })
+    } else {
+        res.status(500).json({ message: 'Invalid Credentials' })
+    }
 })
 
 
