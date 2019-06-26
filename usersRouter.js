@@ -57,7 +57,12 @@ router.post('/register', (req, res) => {
 //On successful login, create a new session for the user and send back a 'Logged in' message and a cookie that contains the user id. 
 //If login fails, respond with the correct status code and the message: 'You shall not pass!'
 router.post('/login', (req, res) => {
-
+    const credentials = req.body;
+    if (!user || !bcrypt.compareSync(credentials.password, user.password)) {
+        return res.status(401).json({ error: 'Incorrect credentials' });
+    } else {
+        return res.status(401).json({ message: 'Invalid Credentials' })
+    }
 })
 
 
